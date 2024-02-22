@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: monitoring
+  name: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monitoring
+  template:
+    metadata:
+      labels:
+        app: monitoring
+    spec:
+      containers:
+      - image: quay.io/apoczeka/container-toolbox:latest
+        name: monitoring
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do echo Monitoring works.. ; curl http://multiapp:8080 &>/dev/null; sleep 5; done"]

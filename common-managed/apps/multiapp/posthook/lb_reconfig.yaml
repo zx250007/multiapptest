@@ -1,0 +1,10 @@
+apiVersion: tower.ansible.com/v1alpha1
+kind: AnsibleJob
+metadata:
+  name: lb-reconfig
+spec:
+  tower_auth_secret: controlleraccess
+  job_template_name: lb_reconfig
+  extra_vars:
+    app_name: multiapp
+    lb_domain: lb.example.lab

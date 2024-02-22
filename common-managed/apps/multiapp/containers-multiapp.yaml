@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: multiapp
+  name: multiapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multiapp
+  template:
+    metadata:
+      labels:
+        app: multiapp
+    spec:
+      containers:
+      - image: quay.io/apoczeka/fractal:latest
+        name: multiapp
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+      - image: quay.io/apoczeka/container-toolbox:latest
+        name: connection
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do curl http://multiapp-vms:22; sleep 600; done"]

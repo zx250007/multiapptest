@@ -1,0 +1,16 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  name: multiapp
+  namespace: multiapp
+  labels:
+    app: multiapp
+  annotations:
+    apps.open-cluster-management.io/github-branch: master
+    apps.open-cluster-management.io/github-path: common-managed/apps/multiapp/
+spec:
+  channel: acmconf-ch/acmconf
+  placement: 
+    placementRef: 
+      kind: PlacementRule
+      name: pr-multiapp

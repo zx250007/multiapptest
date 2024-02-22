@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: vms-ssh
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: multiapp
+    ports:
+    - port: 22
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      app: multiapp
+      myvmi: multiapp
+  policyTypes:
+  - Ingress
+

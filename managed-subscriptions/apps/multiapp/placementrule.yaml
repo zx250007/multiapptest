@@ -1,0 +1,9 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: pr-multiapp
+  namespace: multiapp
+spec:
+  clusterSelector:
+    matchLabels:
+      multiapp: "true"
